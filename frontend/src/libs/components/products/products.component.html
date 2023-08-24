@@ -1,0 +1,95 @@
+<ng-container *ngIf="pageType === PageType.Home">
+  <div
+    class="d-flex mb-5 menu-and-banner-wrapper justify-content-center align-items-center"
+  >
+    <div class="w-25 menu-wrapper">
+      <div (click)="showAllProducts()">All Products</div>
+      <div (click)="showMenProducts()">Men</div>
+      <div (click)="showWomenProducts()">Women</div>
+      <div (click)="showChildrenProducts()">Children</div>
+      <div (click)="showMiscellaneousProducts()">Miscellaneous</div>
+    </div>
+    <div class="banner">
+      <img src="assets/banner-1.jpg" alt="banner-1" />
+    </div>
+  </div>
+
+  <h1 class="text-center">
+    <ng-container *ngIf="selectedProducts === ProductTypes.All">
+      All Products
+    </ng-container>
+    <ng-container *ngIf="selectedProducts === ProductTypes.Men">
+      Men Products
+    </ng-container>
+    <ng-container *ngIf="selectedProducts === ProductTypes.Women">
+      Women Products
+    </ng-container>
+    <ng-container *ngIf="selectedProducts === ProductTypes.children">
+      Children Products
+    </ng-container>
+    <ng-container *ngIf="selectedProducts === ProductTypes.Miscellaneous">
+      Miscellaneous Products
+    </ng-container>
+  </h1>
+
+  <div
+    class="products-wrapper"
+    *ngIf="filteredProducts?.length; else noProductsFound"
+  >
+    <ng-container *ngFor="let product of filteredProducts">
+      <div
+        class="card m-3 cursor-pointer"
+        (click)="goToProductDetailPage(product.id)"
+      >
+        <img
+          src="{{ backendImagesContentUrl }}{{ product.image }}"
+          class="card-img-top p-3"
+          alt="{{ product.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <h5 class="card-title">{{ product.price | currency }}</h5>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-container *ngIf="pageType === PageType.Admin">
+  <div class="products-wrapper" *ngIf="products?.length; else noProductsFound">
+    <ng-container *ngFor="let product of products">
+      <div class="card m-3" (click)="goToProductDetailPage(product.id)">
+        <img
+          src="{{ backendImagesContentUrl }}{{ product.image }}"
+          class="card-img-top p-3"
+          alt="{{ product.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+
+          <div
+            class="d-flex flex-column gap-3"
+            *ngIf="pageType === PageType.Admin"
+          >
+            <h6 class="card-subtitle">{{ product.price | currency }}</h6>
+            <pre
+              class="card-text w-100"
+              [innerHTML]="product.description"
+            ></pre>
+            <button
+              [routerLink]="['/admin/update-product/', product.id]"
+              class="btn btn-primary"
+            >
+              Update Product
+            </button>
+            <button (click)="deleteHandler(product.id)" class="btn btn-primary">
+              Delete Product
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-template #noProductsFound>
+  <div class="text-center text-danger">No Products Found</div>
+</ng-template>

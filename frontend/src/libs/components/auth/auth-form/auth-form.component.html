@@ -1,0 +1,53 @@
+<form [formGroup]="form" (ngSubmit)="onLogin()">
+  <div class="mb-3">
+    <input
+      class="form-control p-3"
+      type="username"
+      formControlName="username"
+      placeholder="Username"
+    />
+    <div
+      *ngIf="
+        form?.get('username')?.invalid &&
+        (isFormSubmitted || form?.get('username')?.touched)
+      "
+    >
+      <div
+        class="input-error"
+        *ngIf="form?.get('username')?.errors?.['required']"
+      >
+        Username is required
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input
+      class="form-control p-3"
+      type="password"
+      formControlName="password"
+      placeholder="Password"
+    />
+    <div
+      *ngIf="
+        form?.get('password')?.invalid &&
+        (isFormSubmitted || form?.get('password')?.touched)
+      "
+    >
+      <div
+        class="input-error"
+        *ngIf="form?.get('password')?.errors?.['required']"
+      >
+        Password is required
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isActionSuccessful" class="text-danger text-center mb-3">
+    Email or password is incorrect
+  </div>
+
+  <div class="d-flex justify-content-center mb-3">
+    <button type="submit" class="btn w-100 btn-primary p-3">Login</button>
+  </div>
+</form>

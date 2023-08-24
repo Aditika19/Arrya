@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg bg-white m-3 w-100">
+  <div class="container-fluid">
+    <div
+      class="navbar-brand"
+      class="image-wrapper cursor-pointer"
+      routerLink="/"
+    >
+      <img src="assets/arrya.png" alt="logo" />
+    </div>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul
+        class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-between w-100"
+      >
+        <div class="d-flex">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [ngClass]="activeMenu === 'home' ? 'active' : ''"
+              routerLink="/"
+            >
+              Home
+            </a>
+          </li>
+        </div>
+
+        <div>
+          <li class="nav-item d-flex gap-3">
+            <a class="nav-link active" routerLink="/admin"> Admin </a>
+            <a
+              *ngIf="isLoggedIn"
+              class="nav-link active"
+              routerLink="/auth/login"
+              (click)="onLogout()"
+            >
+              Logout
+            </a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,33 @@
+.products-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  .card {
+    width: 300px;
+  }
+}
+
+.banner {
+  width: 100%;
+  max-width: 667px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.menu-and-banner-wrapper {
+  padding: 32px;
+  background-color: whitesmoke;
+}
+
+.menu-wrapper > div {
+  border-bottom: 1px solid gray;
+  width: 75%;
+  padding: 16px;
+  cursor: pointer;
+}

@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  margin: 0;
+
+  font-family: var(--bs-body-font-family);
+
+  box-sizing: border-box;
+
+  input,
+  select,
+  textarea {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
+
+pre {
+  font-family: var(--bs-body-font-family);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.form-wrapper {
+  max-width: 475px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.input-error {
+  padding-top: 8px;
+  color: var(--bs-danger);
+  font-size: 12px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,21 @@
+<app-layout>
+  <h1 class="text-primary text-center mb-5">Product Details</h1>
+
+  <div class="d-flex justify-content-center mb-5">
+    <div class="card">
+      <img
+        src="{{ backendImagesContentUrl }}{{ product.image }}"
+        class="card-img-top p-3"
+        alt="{{ product.name }}"
+      />
+      <div
+        class="card-body d-flex flex-column gap-3 justify-content-center align-items-center"
+      >
+        <h5 class="card-title">{{ product.name }}</h5>
+
+        <h6 class="card-subtitle">{{ product.price | currency }}</h6>
+        <pre class="card-text w-100" [innerHTML]="product.description"></pre>
+      </div>
+    </div>
+  </div>
+</app-layout>
